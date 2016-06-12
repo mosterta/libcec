@@ -240,11 +240,8 @@ cec_logical_addresses CSunxiCECAdapterCommunication::GetLogicalAddresses(void) c
 
 void *CSunxiCECAdapterCommunication::Process(void)
 {
-  bool bHandled;
   hdmi_cec_event event;
   int ret;
-
-  uint32_t opcode, status;
   cec_logical_address initiator, destination;
 
   while (!IsStopped())
