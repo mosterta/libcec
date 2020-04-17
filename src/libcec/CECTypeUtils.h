@@ -768,6 +768,8 @@ namespace CEC
         return "TDA995x";
       case ADAPTERTYPE_LINUX:
         return "Linux";
+      case ADAPTERTYPE_SUNXI:
+        return "Sunxi";
       default:
         return "unknown";
       }

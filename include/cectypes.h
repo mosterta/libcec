@@ -302,6 +302,16 @@ namespace CEC {
 #define CEC_AOCEC_VIRTUAL_COM		"AOCEC"
 
 /*!
+ * the path to use for the Sunxi CEC device
+ */
+#define CEC_SUNXI_PATH		"/dev/sunxi_hdmi_cec"
+
+/*!
+ * the name of the virtual COM port to use for the Sunxi CEC wire
+ */
+#define CEC_SUNXI_VIRTUAL_COM		"Sunxi"
+
+/*!
  * Mimimum client version
  */
 #define CEC_MIN_LIB_VERSION          4
@@ -872,7 +882,8 @@ typedef enum cec_adapter_type
   ADAPTERTYPE_TDA995x          = 0x200,
   ADAPTERTYPE_EXYNOS           = 0x300,
   ADAPTERTYPE_LINUX            = 0x400,
-  ADAPTERTYPE_AOCEC            = 0x500
+  ADAPTERTYPE_AOCEC            = 0x500,
+  ADAPTERTYPE_SUNXI            = 0x600
 } cec_adapter_type;
 
 /** force exporting through swig */

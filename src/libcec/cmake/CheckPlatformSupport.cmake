@@ -33,6 +33,7 @@ SET(HAVE_TDA995X_API     OFF CACHE BOOL "tda995x not supported")
 SET(HAVE_EXYNOS_API      OFF CACHE BOOL "exynos not supported")
 SET(HAVE_LINUX_API       OFF CACHE BOOL "linux not supported")
 SET(HAVE_AOCEC_API       OFF CACHE BOOL "aocec not supported")
+set(HAVE_SUNXI_API       OFF CACHE BOOL "sunxi not supported")
 # Pulse-Eight devices are always supported
 set(HAVE_P8_USB          ON  CACHE BOOL "p8 usb-cec supported" FORCE)
 set(HAVE_P8_USB_DETECT   OFF CACHE BOOL "p8 usb-cec detection not supported")
@@ -162,6 +163,17 @@ else()
   else()
     set(HAVE_AOCEC_API 0)
   endif()
+
+  # Sunxi
+  if (${HAVE_SUNXI_LIB})
+    set(LIB_INFO "${LIB_INFO}, Sunxi")
+    set(HAVE_SUNXI_API 1)
+    set(CEC_SOURCES_ADAPTER_SUNXI adapter/Sunxi/SunxiCECAdapterDetection.cpp
+                                  adapter/Sunxi/SunxiCECAdapterCommunication.cpp)
+    source_group("Source Files\\adapter\\Sunxi" FILES ${CEC_SOURCES_ADAPTER_SUNXI})
+    list(APPEND CEC_SOURCES ${CEC_SOURCES_ADAPTER_SUNXI})
+  endif()
+
 endif()
 
 # rt

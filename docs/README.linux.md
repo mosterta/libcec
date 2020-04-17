@@ -57,5 +57,11 @@ Pass the argument `-DHAVE_LINUX_API=1` to the cmake command in the compilation i
 cmake -DHAVE_LINUX_API=1 ..
 ```
 
+### Sunxi
+To compile in support for Sunxi devices, you have to pass the argument -DHAVE_SUNXI_LIB=1 to cmake:
+```
+cmake -DHAVE_SUNXI_LIB=1 ..
+```
+
 ### Debian / Ubuntu .deb packaging
 See [docs/README.debian.md](README.debian.md).
