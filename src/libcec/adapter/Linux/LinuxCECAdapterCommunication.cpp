@@ -135,7 +135,8 @@ cec_adapter_message_state CLinuxCECAdapterCommunication::Write(const cec_command
   if (IsOpen())
   {
     struct cec_msg msg;
-    cec_msg_init(&msg, data.initiator, data.destination);
+    
+    cec_msg_init(&msg, m_logAddrs /*data.initiator*/, data.destination);
 
     if (data.opcode_set)
     {
@@ -247,6 +248,12 @@ bool CLinuxCECAdapterCommunication::SetLogicalAddresses(const cec_logical_addres
     }
 
     LIB_CEC->AddLog(CEC_LOG_DEBUG, "CLinuxCECAdapterCommunication::SetLogicalAddresses - ioctl CEC_ADAP_S_LOG_ADDRS - log_addr_mask=%04x num_log_addrs=%u", log_addrs.log_addr_mask, log_addrs.num_log_addrs);
+
+    if (log_addrs.num_log_addrs && !log_addrs.log_addr_mask)
+        return false;
+
+    m_logAddrs = GetLogicalAddresses().primary;
+
     return true;
   }
 

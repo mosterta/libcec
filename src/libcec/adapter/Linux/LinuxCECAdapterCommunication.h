@@ -88,6 +88,7 @@ namespace CEC
 
   private:
     int m_fd;
+    int m_logAddrs;
   };
 };
 

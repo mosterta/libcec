@@ -11,6 +11,7 @@
 #       HAVE_EXYNOS_API           ON if Exynos is supported
 #       HAVE_LINUX_API            ON if Linux is supported
 #       HAVE_AOCEC_API            ON if AOCEC is supported
+#       Have_DUNXI_API            ON if Sunxi is supported
 #       HAVE_P8_USB               ON if Pulse-Eight devices are supported
 #       HAVE_P8_USB_DETECT        ON if Pulse-Eight devices can be auto-detected
 #       HAVE_DRM_EDID_PARSER      ON if DRM EDID parsing is supported
@@ -165,13 +166,15 @@ else()
   endif()
 
   # Sunxi
-  if (${HAVE_SUNXI_LIB})
+  if (${HAVE_SUNXI_API})
     set(LIB_INFO "${LIB_INFO}, Sunxi")
-    set(HAVE_SUNXI_API 1)
+    set(HAVE_SUNXI_API ON CACHE BOOL "Sunxi supported" FORCE)
     set(CEC_SOURCES_ADAPTER_SUNXI adapter/Sunxi/SunxiCECAdapterDetection.cpp
                                   adapter/Sunxi/SunxiCECAdapterCommunication.cpp)
     source_group("Source Files\\adapter\\Sunxi" FILES ${CEC_SOURCES_ADAPTER_SUNXI})
     list(APPEND CEC_SOURCES ${CEC_SOURCES_ADAPTER_SUNXI})
+  else()
+    set(HAVE_SUNXI_API 0)
   endif()
 
 endif()
@@ -203,7 +206,6 @@ else()
     else()
       string(REGEX REPLACE "\\.[0-9]+\\+?$" "" PYTHON_VERSION ${PYTHONLIBS_VERSION_STRING})
     endif()
-
     include(${SWIG_USE_FILE})
     include_directories(${PYTHON_INCLUDE_PATH})
     include_directories(${CMAKE_CURRENT_SOURCE_DIR})

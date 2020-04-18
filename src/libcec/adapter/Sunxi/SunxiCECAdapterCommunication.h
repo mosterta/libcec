@@ -105,7 +105,7 @@ namespace CEC
     //cec_logical_addresses       m_logicalAddresses;
     cec_logical_address         m_logicalAddress;
 
-    P8PLATFORM::CMutex            m_mutex;
+    mutable P8PLATFORM::CMutex            m_mutex;
     P8PLATFORM::CCDevSocket       *m_dev;	/**< the device connection */
     
     P8PLATFORM::CMutex            m_messageMutex;

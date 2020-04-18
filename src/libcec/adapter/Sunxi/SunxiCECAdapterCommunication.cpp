@@ -202,7 +202,7 @@ uint16_t CSunxiCECAdapterCommunication::GetPhysicalAddress(void)
 }
 
 
-cec_logical_addresses CSunxiCECAdapterCommunication::GetLogicalAddresses(void)
+cec_logical_addresses CSunxiCECAdapterCommunication::GetLogicalAddresses(void) const
 {
   cec_logical_addresses addresses;
   addresses.Clear();
@@ -231,11 +231,6 @@ bool CSunxiCECAdapterCommunication::SetLogicalAddresses(const cec_logical_addres
 
   m_logicalAddress = (cec_logical_address)log_addr;
   return true;
-}
-
-cec_logical_addresses CSunxiCECAdapterCommunication::GetLogicalAddresses(void) const
-{
-  return m_logicalAddress;
 }
 
 void *CSunxiCECAdapterCommunication::Process(void)
